@@ -7,29 +7,29 @@ from torchvision import datasets, transforms
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.conv1 = nn.Conv2d(1, 32, 3, padding=1)
-        self.conv2 = nn.Conv2d(32, 32, 3, padding=1)
+        self.conv1 = nn.Conv2d(1, 8, 3, padding=1)
+        self.conv2 = nn.Conv2d(8, 8, 3, padding=1)
         self.pool1 = nn.MaxPool2d(2, 2)
-        self.conv3 = nn.Conv2d(32, 64, 3, padding=1)
-        self.conv4 = nn.Conv2d(64, 64, 3, padding=1)
+        self.conv3 = nn.Conv2d(8, 16, 3, padding=1)
+        self.conv4 = nn.Conv2d(16, 16, 3, padding=1)
         self.pool2 = nn.MaxPool2d(2, 2)
-        self.conv5 = nn.Conv2d(64, 64, 3, padding=1)
-        self.conv6 = nn.Conv2d(64, 64, 3)
-
+        self.conv5 = nn.Conv2d(16, 16, 3, padding=1)
+        self.conv6 = nn.Conv2d(16, 16, 3)
+        
         # Replace conv7 with a 1x1 kernel instead of a 3x3 kernel
-        self.conv7 = nn.Conv2d(64, 10, 1)  # 1x1 kernel
+        self.conv7 = nn.Conv2d(16, 10, 1)  # 1x1 kernel
 
         # Define dropout with 10% probability
         self.dropout = nn.Dropout(p=0.1)  # 10% dropout rate
 
         # Define Batch Normalization layers
-        self.bn1 = nn.BatchNorm2d(32)  # BatchNorm for the output of conv1
-        self.bn2 = nn.BatchNorm2d(32)  # BatchNorm for the output of conv2
-        self.bn3 = nn.BatchNorm2d(64)  # BatchNorm for the output of conv3
-        self.bn4 = nn.BatchNorm2d(64)  # BatchNorm for the output of conv4
-        self.bn5 = nn.BatchNorm2d(64) # BatchNorm for the output of conv5
-        self.bn6 = nn.BatchNorm2d(64) # BatchNorm for the output of conv6
-
+        self.bn1 = nn.BatchNorm2d(8)  # BatchNorm for the output of conv1
+        self.bn2 = nn.BatchNorm2d(8)  # BatchNorm for the output of conv2
+        self.bn3 = nn.BatchNorm2d(16)  # BatchNorm for the output of conv3
+        self.bn4 = nn.BatchNorm2d(16)  # BatchNorm for the output of conv4
+        self.bn5 = nn.BatchNorm2d(16) # BatchNorm for the output of conv5
+        self.bn6 = nn.BatchNorm2d(16) # BatchNorm for the output of conv6
+        
         # Global Average Pooling layer
         self.gap = nn.AdaptiveAvgPool2d(1)  # Reduces each feature map to 1x1
 
@@ -56,4 +56,4 @@ class Net(nn.Module):
         # x = self.conv7(x.unsqueeze(-1).unsqueeze(-1))  # Convert the flattened vector into a form for conv7 (needs to be (batch_size, 128, 1, 1))
 
         # Return log softmax for classification output
-        return F.log_softmax(x, dim=1)
+        return F.log_softmax(x, dim=1)  # Log softmax for classification output

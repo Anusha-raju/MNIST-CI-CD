@@ -1,5 +1,5 @@
-import torch
 import unittest
+import torch
 from torch import nn
 from torchsummary import summary
 
@@ -53,6 +53,7 @@ class TestModel(unittest.TestCase):
             summary(self.model, input_size=(1, 28, 28))
         except Exception as e:
             self.fail(f"Failed to generate model summary: {str(e)}")
+
 
 if __name__ == "__main__":
     unittest.main()
