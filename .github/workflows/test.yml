@@ -1,0 +1,33 @@
+name: Test Model
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # You can also use 'windows-latest' or 'macos-latest' if needed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # Use your desired Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision torchaudio
+        pip install -r requirements.txt  # If you have a requirements file
+
+    - name: Load model and run tests
+      run: |
+        # Assuming 'test_model.py' is your test file
+        python test_model.py
+      env:
+        # Add environment variables if needed, e.g., for credentials or paths
+        MODEL_PATH: 'model.pth'  # Specify the path to your model
