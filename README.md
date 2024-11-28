@@ -104,7 +104,7 @@ loss=0.07203114777803421 batch_id=468: 100%|██████████| 469/
 
 Test set: Average loss: 0.0397, Accuracy: 9886/10000 (98.8600%)
 ```
-** Total number of epochs taken are 9. **
+**Total number of epochs taken are 9.**
 
 ## Acknowledgments
 
