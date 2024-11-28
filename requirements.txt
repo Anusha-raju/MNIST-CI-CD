@@ -1,4 +1,3 @@
 torch
 unittest
 torchsummary
-__future__
